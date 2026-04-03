@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: #0b1120;
+    color: #e2e8f0;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .bg-cyber-grid {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  }
+
+  .glass-panel {
+    @apply bg-slate-900/40 backdrop-blur-xl border border-slate-700/50 shadow-2xl;
+  }
+  
+  .glass-panel-hover {
+    @apply hover:bg-slate-800/50 hover:border-slate-600/50 transition-all duration-300;
+  }
+  
+  .text-glow-blue {
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+  }
+  
+  .text-glow-red {
+    text-shadow: 0 0 20px rgba(244, 63, 94, 0.8), 0 0 40px rgba(244, 63, 94, 0.4);
+  }
+}
+
+/* Animations */
+@keyframes shake-violent {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translate(-1px, 0.5px) rotate(-0.5deg); }
+  20%, 40%, 60%, 80% { transform: translate(1px, -0.5px) rotate(0.5deg); }
+}
+
+@keyframes pulse-alarm {
+  0%, 100% { background-color: rgba(225, 29, 72, 0.05); }
+  50% { background-color: rgba(225, 29, 72, 0.2); }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(1000%); opacity: 0; }
+}
+
+@keyframes audio-bar {
+  0%, 100% { transform: scaleY(0.2); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes scan-glow {
+  0% { box-shadow: 0 0 10px rgba(56,189,248,0.2); }
+  50% { box-shadow: 0 0 30px rgba(56,189,248,0.6); }
+  100% { box-shadow: 0 0 10px rgba(56,189,248,0.2); }
+}
+
+.animate-shake-violent {
+  animation: shake-violent 0.4s ease-in-out infinite;
+}
+
+.animate-pulse-alarm {
+  animation: pulse-alarm 2s ease-in-out infinite;
+}
+
+.audio-bar {
+  animation: audio-bar 0.5s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(56,189,248,0.8) 50%, transparent);
+  box-shadow: 0 0 15px 2px rgba(56,189,248,0.5);
+  animation: scan-line 2s linear infinite;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Base structural fixes */
+#root {
+  width: 100%;
+}
